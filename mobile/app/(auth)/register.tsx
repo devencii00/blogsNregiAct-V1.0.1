@@ -99,44 +99,100 @@ export default function Register() {
 };
 
   return (
-    <View className="flex-1 items-center justify-center p-4 bg-gray-100">
-      <View className="bg-white shadow-md p-6 w-full gap-4 rounded-xl">
-        <Text className="text-xl font-bold text-center">Register Account</Text>
+    <View className="flex-1 bg-pink-50 p-6 justify-center">
 
-     
+      <View className="bg-white p-8 w-full gap-4 rounded-3xl border border-pink-100 shadow-2xl shadow-pink-500/40">
+        
+        <Text 
+          style={{ fontFamily: 'serif' }} 
+          className="text-2xl font-bold text-center text-black underline underline-offset-4 decoration-pink-200 mb-2"
+        >
+          REGISTER ACCOUNT
+        </Text>
+
+
         <View className="items-center mb-2">
           <TouchableOpacity
             onPress={pickImage}
-            className="w-40 h-40  bg-blue-600 justify-center items-center overflow-hidden"
+            className="w-24 h-24 rounded-full bg-pink-100 justify-center items-center overflow-hidden border-2 border-dashed border-black-400"
           >
             {profile_image ? (
               <Image source={{ uri: profile_image.uri }} className="w-full h-full" />
             ) : (
-              <Text className="text-xs text-center text-white">Upload Profile Picture</Text>
+              <Text style={{ fontFamily: 'serif' }} className="text-[10px] text-center text-pink-600 px-2 font-bold">
+                Upload Photo
+              </Text>
             )}
           </TouchableOpacity>
         </View>
 
 
+        <View>
+          <TextInput 
+            value={name} 
+            onChangeText={setName} 
+            style={{ fontFamily: 'serif' }}
+            placeholder="Full Name" 
+            placeholderTextColor="#f472b6"
+            className="h-11 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500" 
+          />
+          {errors.name && <Text style={{ fontFamily: 'serif' }} className="text-pink-500 text-[10px] mt-1 ml-1">{errors.name[0]}</Text>}
+        </View>
 
-        <TextInput value={name} onChangeText={setName} className="h-12 px-4 border rounded" placeholder="Full Name" />
-        {errors.name && <Text className="text-red-500 text-sm">{errors.name[0]}</Text>}
+        <View>
+          <TextInput 
+            value={email} 
+            onChangeText={setEmail} 
+            style={{ fontFamily: 'serif' }}
+            placeholder="Email Address" 
+            placeholderTextColor="#f472b6"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            className="h-11 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500" 
+          />
+          {errors.email && <Text style={{ fontFamily: 'serif' }} className="text-pink-500 text-[10px] mt-1 ml-1">{errors.email[0]}</Text>}
+        </View>
 
-        <TextInput value={email} onChangeText={setEmail} className="h-12 px-4 border rounded" placeholder="Email Address" keyboardType="email-address" autoCapitalize="none" />
-        {errors.email && <Text className="text-red-500 text-sm">{errors.email[0]}</Text>}
+        <View>
+          <TextInput 
+            value={password} 
+            onChangeText={setPassword} 
+            style={{ fontFamily: 'serif' }}
+            placeholder="Password" 
+            secureTextEntry 
+            placeholderTextColor="#f472b6"
+            className="h-11 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500" 
+          />
+          {errors.password && <Text style={{ fontFamily: 'serif' }} className="text-pink-500 text-[10px] mt-1 ml-1">{errors.password[0]}</Text>}
+        </View>
 
-        <TextInput value={password} onChangeText={setPassword} className="h-12 px-4 border rounded" placeholder="Password" secureTextEntry />
-        {errors.password && <Text className="text-red-500 text-sm">{errors.password[0]}</Text>}
+        <View>
+          <TextInput 
+            value={password_confirmation} 
+            onChangeText={setPasswordConfirmation} 
+            style={{ fontFamily: 'serif' }}
+            placeholder="Confirm Password" 
+            secureTextEntry 
+            placeholderTextColor="#f472b6"
+            className="h-11 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500" 
+          />
+        </View>
 
-        <TextInput value={password_confirmation} onChangeText={setPasswordConfirmation} className="h-12 px-4 border rounded" placeholder="Confirm Password" secureTextEntry />
-        {errors.password_confirmation && <Text className="text-red-500 text-sm">{errors.password_confirmation[0]}</Text>}
-
-        <TouchableOpacity onPress={handleRegistration} className="h-12 rounded-full bg-blue-600 items-center justify-center mt-2">
-          <Text className="text-white font-bold">Create Account</Text>
+        <TouchableOpacity 
+          onPress={handleRegistration} 
+          className="h-14 rounded-xl bg-pink-600 items-center justify-center mt-2 shadow-lg shadow-pink-200"
+        >
+          <Text style={{ fontFamily: 'serif' }} className="text-white font-bold text-lg">Create Account</Text>
         </TouchableOpacity>
 
-        <Pressable onPress={() => router.navigate("/login")} className="mt-2">
-          <Text className="text-blue-500 text-center">Back to Login</Text>
+
+        <Pressable onPress={() => router.navigate("/login")} className="mt-1">
+          <Text 
+            style={{ fontFamily: 'serif' }} 
+            className="text-black-400 text-center underline underline-offset-2"
+          >
+            Back to Login
+          </Text>
         </Pressable>
       </View>
     </View>

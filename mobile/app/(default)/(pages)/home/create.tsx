@@ -57,43 +57,78 @@ export default function Create() {
     }
   };
 
-  return (
-    <View className="p-4 gap-4">
-      <TextInput
-        value={title}
-        onChangeText={setTitle}
-        className="h-12 px-4 border"
-      />
-      <TextInput
-        value={description}
-        onChangeText={setDescription}
-        className="h-12 px-4 border"
-      />
-      <View>
-        <TouchableOpacity
-          onPress={pickImage}
-          className="h-12 bg-blue-500 items-center justify-center"
+   return (
+    <View className="flex-1 bg-pink-50 p-6 justify-center">
+      <View className="bg-white p-8 w-full gap-5 rounded-3xl border border-pink-100 shadow-2xl shadow-pink-500/40">
+        
+        <Text 
+          style={{ fontFamily: 'serif' }} 
+          className="text-2xl font-bold text-center text-black-600 underline underline-offset-4 decoration-pink-200 mb-2"
         >
-          <Text className="text-white">Browse Image</Text>
-        </TouchableOpacity>
-      </View>
-      {image && (
-        <Image
-          className="h-40"
-          source={{
-            uri: image.uri,
-          }}
+          CREATE BLOG
+        </Text>
+
+        {/* Title Input */}
+        <TextInput
+          value={title}
+          onChangeText={setTitle}
+          style={{ fontFamily: 'serif' }}
+          placeholder="Blog Title"
+          placeholderTextColor="#f472b6"
+          className="h-12 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500"
         />
-      )}
-      <TouchableOpacity
-        onPress={handleCreateBlog}
-        className="h-12 rounded-full bg-blue-500 items-center justify-center"
-      >
-        <Text className="text-white font-bold">Create Blog</Text>
-      </TouchableOpacity>
+
+        {/* Description Input */}
+        <TextInput
+          value={description}
+          onChangeText={setDescription}
+          style={{ fontFamily: 'serif' }}
+          placeholder="Write your story..."
+          placeholderTextColor="#f472b6"
+          multiline
+          className="h-24 px-4 py-3 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500 text-top"
+        />
+
+        {/* Image Picker Button */}
+        <View>
+          <TouchableOpacity
+            onPress={pickImage}
+            className="h-12 bg-pink-100 border border-dashed border-black-400 items-center justify-center rounded-xl"
+          >
+            <Text style={{ fontFamily: 'serif' }} className="text-pink-600 font-bold">
+              {image ? "Change Image" : "Browse Image"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Image Preview */}
+        {image && (
+          <Image
+            className="h-40 w-full rounded-2xl border border-pink-100"
+            source={{ uri: image.uri }}
+          />
+        )}
+
+        {/* Create Button */}
+        <TouchableOpacity
+          onPress={handleCreateBlog}
+          className="h-14 rounded-xl bg-pink-600 items-center justify-center mt-2 shadow-lg shadow-pink-200"
+        >
+          <Text style={{ fontFamily: 'serif' }} className="text-white font-bold text-lg">
+            Publish Post
+          </Text>
+        </TouchableOpacity>
+
+        {/* Back Link */}
         <Pressable onPress={() => router.navigate("/home")} className="mt-2">
-                <Text className="text-blue-500 text-center">Back to home</Text>
-              </Pressable>
+          <Text 
+            style={{ fontFamily: 'serif' }} 
+            className="text-black-400 text-center underline underline-offset-2"
+          >
+            Back to home
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

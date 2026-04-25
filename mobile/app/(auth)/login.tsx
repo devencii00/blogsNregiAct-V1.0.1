@@ -48,41 +48,69 @@ export default function Login() {
 
 
 
-  return (
-    <View className="flex-1 items-center justify-center p-4  ">
-      <View className="bg-white shadow-md p-4 w-full gap-4 rounded" >  {message && (
-        <Text className="p-4 bg-green-500 rounded-xl text-white">
-          {message}
+   return (
+    <View className="flex-1 bg-pink-50 p-6 justify-center">
+
+      <View className="bg-white p-8 w-full gap-6 rounded-3xl border border-pink-100 shadow-2xl shadow-pink-500/40">
+        
+        <Text 
+          style={{ fontFamily: 'serif' }} 
+          className="text-2xl font-bold text-center text-black underline underline-offset-4 decoration-pink-200 mb-2"
+        >
+          LOGIN TO YOUR ACCOUNT
         </Text>
-      )}
-        <Text className="text-xl font-bold text-center">Login to your account</Text>
-        <TextInput
-          value={email}
-          onChangeText={setEmail}
-          className="h-12 px-4 border"
-          placeholder="Enter your email"
-        />   {errors.email && <Text className="text-red-500 text-sm mt-1">{errors.email[0]}</Text>}
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          className="h-12 px-4 border"
-          placeholder="Enter your password"
-          secureTextEntry
-        /> {errors.password && <Text className="text-red-500 text-sm mt-1">{errors.password[0]}</Text>}
+
+
+        <View>
+          <TextInput
+            value={email}
+            onChangeText={setEmail}
+            style={{ fontFamily: 'serif' }}
+            placeholder="Enter your email"
+            placeholderTextColor="#f472b6"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            className="h-12 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500"
+          />
+          {errors.email && (
+            <Text style={{ fontFamily: 'serif' }} className="text-pink-500 text-xs mt-1 ml-1">
+              {errors.email[0]}
+            </Text>
+          )}
+        </View>
+
+        <View>
+          <TextInput
+            value={password}
+            onChangeText={setPassword}
+            style={{ fontFamily: 'serif' }}
+            placeholder="Enter your password"
+            placeholderTextColor="#f472b6"
+            secureTextEntry
+            className="h-12 px-4 border border-black-200 bg-pink-50/30 rounded-xl focus:border-pink-500"
+          />
+          {errors.password && (
+            <Text style={{ fontFamily: 'serif' }} className="text-pink-500 text-xs mt-1 ml-1">
+              {errors.password[0]}
+            </Text>
+          )}
+        </View>
+
         <TouchableOpacity
           onPress={handleLogin}
-          className="h-12 rounded-full bg-blue-500 items-center justify-center"
+          className="h-14 rounded-xl bg-pink-600 items-center justify-center mt-2 shadow-lg shadow-pink-200"
         >
-          <Text className="text-white font-bold">Login</Text>
-
+          <Text style={{ fontFamily: 'serif' }} className="text-white font-bold text-lg">
+            Login
+          </Text>
         </TouchableOpacity>
 
-        <Pressable onPress={() =>
-          router.navigate({
-            pathname: "/register",
-          })
-        }>
-          <Text style={{ color: 'blue' }}>
+
+        <Pressable onPress={() => router.navigate("/register")} className="mt-2">
+          <Text 
+            style={{ fontFamily: 'serif' }} 
+            className="text-black-400 text-center underline underline-offset-2"
+          >
             Register your account
           </Text>
         </Pressable>

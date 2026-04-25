@@ -30,34 +30,72 @@ export default function Home() {
   );
 
 
-  return (
-    <ScrollView className="p-4">
-      
-      <View className="gap-4">
-          <Pressable onPress={() => router.navigate("/(default)/(pages)/home/create")} className="mt-2">
-          <Text className="text-blue-500 text-center">Create a Blog Post</Text>
-        </Pressable>
+ return (
+    <ScrollView 
+      className="flex-1 bg-white" // Clean white background
+      showsVerticalScrollIndicator={false}
+    >
+      <View className="p-5">
+        {/* Elegant Header Area */}
+        <View className="flex-row justify-between items-center mb-6">
+          <Text style={{ fontFamily: 'serif' }} className="text-2xl font-bold text-gray-800">
+            Latest Stories
+          </Text>
+          <Pressable 
+            onPress={() => router.navigate("/(default)/(pages)/home/create")}
+            className="bg-pink-100 px-4 py-2 rounded-full border border-pink-200"
+          >
+            <Text style={{ fontFamily: 'serif' }} className="text-pink-600 font-bold text-xs">
+              + Create
+            </Text>
+          </Pressable>
+        </View>
 
-        {blogs.map((blog) => (
-          
-          <View key={blog.id} className="mb-6">
-            <Image
-              className="h-40 w-full"
-              source={{
-                uri: `http://127.0.0.1:8000/storage/${blog.image}`,
-              }}
-            />
-            
-            <Text className="text-lg font-bold">{blog.title}</Text>
-            <Text className="text-lg ">{blog.description}</Text>
-            
-          </View>
-        ))}
+        {/* Blog Feed */}
+        <View className="gap-6">
+          {blogs.map((blog) => (
+            <Pressable 
+              key={blog.id} 
+              onPress={() => router.navigate(`/blogs/${blog.id}`)}
+              className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-pink-200/50 border border-gray-100"
+            >
+              {/* Image with slight overlay/tint potential */}
+              <Image
+                className="h-52 w-full"
+                source={{ uri: `http://127.0.0.1:8000/storage/${blog.image}` }}
+              />
+              
+              <View className="p-4">
+                <Text 
+                  style={{ fontFamily: 'serif' }} 
+                  className="text-lg font-bold text-gray-900 mb-1"
+                >
+                  {blog.title}
+                </Text>
+                
+                <Text 
+                  style={{ fontFamily: 'serif' }} 
+                  className="text-sm text-gray-500 leading-5"
+                  numberOfLines={2} // Keeps it clean
+                >
+                  {blog.description}
+                </Text>
+
+                {/* Subtle "Read More" line */}
+                <Text 
+                  style={{ fontFamily: 'serif' }} 
+                  className="text-pink-500 text-xs mt-3 font-bold underline"
+                >
+                  Read full story
+                </Text>
+              </View>
+            </Pressable>
+          ))}
+        </View>
       </View>
     </ScrollView>
   );
 }
-
 
 
 
